@@ -25,6 +25,8 @@ ol, ul {
   top: 10vh;
   left: 23vw;
   right: 23vw;
+  border-style: double;
+  border-style: groove;
 }
 
 .board-row:after {
