@@ -22,26 +22,32 @@ class WelcomeScreen extends Component {
     	return (
     		<div>
                 <div className="welcome-box">
-                    <div className='welcome-text'>Welcome to Tic Tac Toe</div>
-                    <div className='welcome-text'>Feel free to visit <a href="https://reactjs.org/tutorial/tutorial.html">this site</a> to learn how to make your own tic-tac-toe game with React! :)</div>
+                    <h1 className='welcome-text'>Welcome to Tic Tac Toe</h1>
+                    <h3 className='welcome-text'>Feel free to visit <a href="https://reactjs.org/tutorial/tutorial.html">this site</a> to learn how to make your own tic-tac-toe game with React! :)</h3>
                     <button className="play-game-button" onClick={() => this.props.playGame()}>
                         Play Game
                     </button>
                 </div>
     			<Welcome
-                	loopDuration={3000}
-                    data={
-                            [
-                                {
-                                    "backgroundColor": "rgb(73, 49, 91)",
-                                    "textColor": "#EE79EA",
-                                    "imageAnimation": "flipInX",
-                                    "image": require('../images/tictactoefun.png'),
-                                    "text": "Thanks for visiting my app!",
-                                    "textAnimation": "slideInLeft",
-                                }
-                            ]
-                    } />
+                	loopDuration={1000}
+                    data={[
+                        {
+                            "backgroundColor": "rgb(73, 49, 91)",
+                            "textColor": "#EE79EA",
+                            "imageAnimation": "flipInX",
+                            "image": require('../images/tictactoefun.png'),
+                            "text": "Thanks for visiting!",
+                            "textAnimation": "slideInLeft",
+                        },
+                        {
+                            "backgroundColor": "rgb(30, 73, 91)",
+                            "textColor": "#00FFFF",
+                            "imageAnimation": "flipInY",
+                            "image": require('../images/tictactoefun.png'),
+                            "text": "Gracias por su visita!",
+                            "textAnimation": "slideInLeft",
+                        }
+                    ]} />
     		</div>
     	)
     }

@@ -11,14 +11,6 @@ class Home extends Component {
     	stepNumber: 0,
         xIsNext: true,
         onHomeScreen: true,
-        xCoordinateMouse: 0,
-        yCoordinateMouse: 0,
-    }
-
-    _onMouseMove = (e) => {
-        this.setState({
-            xCoordinateMouse: e.screenX, yCoordinateMouse: e.screenY
-        });
     }
 
     playGame = () => {
@@ -36,10 +28,10 @@ class Home extends Component {
     render() {
         const onHomeScreen = this.state.onHomeScreen
     	return (
-            <div onMouseMove={() => this._onMouseMove(this)}>
+            <div>
             {
                 onHomeScreen ?
-                    <WelcomeScreen playGame={this.playGame}/> : <Game />
+                    <WelcomeScreen playGame={this.playGame}/> : <Game returnToHomeScreen={this.returnToHomeScreen}/>
             }
             </div>
     	)

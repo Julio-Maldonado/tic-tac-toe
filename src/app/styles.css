@@ -18,19 +18,18 @@ ol, ul {
 .welcome-box {
   height: 70vh;
   width: 50vw;
-  top: 200;
-  border: 5px solid green;
-  padding: 10px;
+  border: 1vw solid green;
+  padding: 1vw;
   margin: 0 auto;
   position: absolute;
-  top: 10%;
-  left: 25%;
-  /* margin-top: 30%; */
+  top: 10vh;
+  left: 23vw;
+  right: 23vw;
 }
 
 .board-row:after {
-  clear: both;
-  content: "";
+  /* clear: both; */
+  /* content: ""; */
   display: table;
 }
 
@@ -40,14 +39,15 @@ ol, ul {
 
 .square {
   background: #fff;
-  border: 1px solid #999;
+  border: 0.1vw solid #999;
   float: left;
-  font-size: 4vw;
+  font-size: 5vw;
   font-weight: bold;
-  line-height: 5vw;
-  height: 5vw;
+  padding: 0;
+  line-height: 8vw;
+  height: 8vw;
+  width: 8vw;
   text-align: center;
-  width: 5vw;
 }
 
 .square:focus {
@@ -64,8 +64,8 @@ ol, ul {
   align-items: center;
   margin: 0 auto;
   position: absolute;
-  top: 10%;
-  left: 42.5vw;
+  top: 10vh;
+  left: 38vw;
 }
 
 .game-info {

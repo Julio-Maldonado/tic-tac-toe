@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {calculateWinner} from './helperFunctions'
 import Board from './Board'
 import './styles.css'
+import Modal from 'react-responsive-modal'
 
 class Game extends Component {
     state = {
@@ -9,7 +10,8 @@ class Game extends Component {
     		squares: Array(9).fill(null)
     	}],
     	stepNumber: 0,
-    	xIsNext: true
+		xIsNext: true,
+		openModal: false,
     }
 
     jumpTo = (step) => {
@@ -35,9 +37,29 @@ class Game extends Component {
     		stepNumber: history.length,
     		xIsNext: !this.state.xIsNext
     	})
-    }
+	}
+	
+	clearGame = () => {
+		this.setState({
+			history: [{
+    			squares: Array(9).fill(null)
+			}],
+			stepNumber: 0
+		})
+	}
+
+	onOpenModal = () => {
+		this.setState({ openModal: true });
+	};
+
+	onCloseModal = () => {
+		this.setState({ openModal: false});
+		this.clearGame()
+	};
 
     render() {
+		const openModal = this.state.openModal
+
     	const history = this.state.history
     	const current = history[this.state.stepNumber]
     	const winner = calculateWinner(current.squares)
@@ -53,13 +75,20 @@ class Game extends Component {
     	})
 
     	let status
-    	if (winner)
-    		status = 'Winner: ' + winner
+    	if (winner && !openModal) {
+			status = 'Winner: ' + winner
+			this.onOpenModal()
+		}
     	else
     		status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O')
 
     	return (
     		<div className="game">
+				<Modal open={openModal} onClose={this.onCloseModal} center>
+					<h2>Congrats Player {winner}!</h2>
+					<button onClick={() => this.onCloseModal()}>Play Again</button>
+					<button onClick={() => this.props.returnToHomeScreen()}>Go Back</button>
+				</Modal>
     			<div className="game-board">
     				<Board
     					squares={current.squares}
