@@ -22,13 +22,27 @@ class WelcomeScreen extends Component {
     	return (
     		<div>
                 <div className="welcome-box">
-                    <h1 className='welcome-text'>Welcome to Tic Tac Toe</h1>
-                    <h3 className='welcome-text'>Feel free to visit <a href="https://reactjs.org/tutorial/tutorial.html">this site</a> to learn how to make your own tic-tac-toe game with React! :)</h3>
-                    <button className="play-game-button" onClick={() => this.props.playGame()}>
-                        Play / Jugar
+                    
+                    {
+                        this.props.englishFlag ?
+                        ( <div>
+                            <h1 className='welcome-text'>Welcome to Tic Tac Toe</h1>
+                            <h3 className='welcome-text'>Feel free to visit <a href="https://reactjs.org/tutorial/tutorial.html">this site</a> to learn how to make your own tic-tac-toe game with React! :)</h3>
+                            <button className="play-game-button" onClick={() => this.props.playGame()}>
+                                Play
+                            </button>
+                        </div>) : 
+                        (<div>
+                            <h1 className='welcome-text'>Bienvenido a Tic Tac Toe</h1>
+                            <h3 className='welcome-text'>¡Siéntete libre de visitar <a href="https://es.reactjs.org/tutorial/tutorial.html">este sitio</a> para aprender cómo hacer tu propio juego de tic-tac-toe con React! :)</h3>
+                            <button className="play-game-button" onClick={() => this.props.playGame()}>
+                                Jugar
+                            </button>
+                        </div>)
+                    }
+                    <button className="language-button" onClick={() => this.props.updateLanguage()}>
+                        {this.props.englishFlag ? "Spanish" : "English"}
                     </button>
-                    <h1 className='welcome-text'>Bienvenido a Tic Tac Toe</h1>
-                    <h3 className='welcome-text'>¡Siéntete libre de visitar <a href="https://es.reactjs.org/tutorial/tutorial.html">este sitio</a> para aprender cómo hacer tu propio juego de tic-tac-toe con React! :)</h3>
                 </div>
     			<Welcome
                 	loopDuration={1000}

@@ -55,6 +55,7 @@ class Game extends Component {
 	onCloseModal = () => {
 		this.setState({ openModal: false});
 		this.clearGame()
+		this.tie = false
 	};
 
     render() {
@@ -65,8 +66,12 @@ class Game extends Component {
     	const winner = calculateWinner(current.squares)
 
     	const moves = history.map((step, move) => {
-    		const desc = move ? 'Go to move #' + move : 'Go to game start'
-
+			let desc
+			if (this.props.englishFlag)
+				desc = move ? 'Go to move #' + move : 'Go to game start'
+			else 
+				desc = move ? 'Ir a moverse #' + move : 'Ir al inicio del juego'
+			
     		return (
     			<li key={move}>
     				<button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -76,19 +81,40 @@ class Game extends Component {
 
     	let status
     	if (winner && !openModal) {
-			status = 'Winner: ' + winner
+			if (this.props.englishFlag)
+				status = 'Winner: ' + winner
+			else 
+				status = 'Ganador: ' + winner
 			this.onOpenModal()
 		}
-    	else
-    		status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O')
+    	else {
+			if (this.props.englishFlag)
+				status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O')
+			else 
+				status = 'Siguiente jugador: ' + (this.state.xIsNext ? 'X' : 'O')
+			
+		}
+
+		if (history.length === 10 && !openModal) {
+			this.tie = true
+			this.onOpenModal()
+		}
 
     	return (
     		<div className="game">
-				<Modal open={openModal} onClose={this.onCloseModal} center>
-					<h2>Congrats Player {winner}!</h2>
+				{
+                    this.props.englishFlag ?
+				(<Modal open={openModal} onClose={this.onCloseModal} center>
+					{this.tie ? <h2>It's a tie!</h2> : <h2>Congrats Player {winner}!</h2>}					
 					<button onClick={() => this.onCloseModal()}>Play Again</button>
 					<button onClick={() => this.props.returnToHomeScreen()}>Go Back</button>
-				</Modal>
+				</Modal>) :
+				(<Modal open={openModal} onClose={this.onCloseModal} center>
+					{this.tie ? <h2>Es una empate!</h2> : <h2>Felicidades Jugador {winner}!</h2>}					
+					<button onClick={() => this.onCloseModal()}>Juega de Nuevo</button>
+					<button onClick={() => this.props.returnToHomeScreen()}>Regresa</button>
+				</Modal>)
+				}
     			<div className="game-board">
     				<Board
     					squares={current.squares}

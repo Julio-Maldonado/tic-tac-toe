@@ -11,6 +11,7 @@ class Home extends Component {
     	stepNumber: 0,
         xIsNext: true,
         onHomeScreen: true,
+        englishFlag: true,
     }
 
     playGame = () => {
@@ -25,13 +26,26 @@ class Home extends Component {
         })
     }
 
+    updateLanguage = () => {
+        this.setState({ 
+            englishFlag: !this.state.englishFlag
+        })
+    }
+
     render() {
         const onHomeScreen = this.state.onHomeScreen
     	return (
             <div>
             {
                 onHomeScreen ?
-                    <WelcomeScreen playGame={this.playGame}/> : <Game returnToHomeScreen={this.returnToHomeScreen}/>
+                    <WelcomeScreen 
+                        englishFlag={this.state.englishFlag}
+                        updateLanguage={this.updateLanguage} 
+                        playGame={this.playGame} />
+                    : 
+                    <Game 
+                        englishFlag={this.state.englishFlag}     
+                        returnToHomeScreen={this.returnToHomeScreen} />
             }
             </div>
     	)
