@@ -13,10 +13,11 @@ class Home extends Component {
         onHomeScreen: true,
         englishFlag: true,
     }
-    
+
     componentDidMount() {
         document.title = "Tic-Tac-Toe by Julio"
     }
+
     playGame = () => {
     	this.setState({
     		onHomeScreen: false

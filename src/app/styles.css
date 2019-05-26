@@ -15,6 +15,10 @@ ol, ul {
   margin: 5px;
 }
 
+.language-button {
+  margin-top: 20vh;
+}
+
 .welcome-box {
   height: 70vh;
   width: 50vw;
